@@ -1,0 +1,17 @@
+*{box-sizing:border-box}
+body{margin:0;background:#050b14;color:#eef5ff;font-family:Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:24px 38px;background:#02060d;border-bottom:1px solid #1e3a5f}
+h1{margin:0;font-size:36px} p{color:#b7c7dc}
+button{background:#00e091;color:#03120c;border:0;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer}
+.top-grid,.main-grid,.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:94%;margin:22px auto}
+.kpi-grid{grid-template-columns:repeat(4,1fr)}
+.panel,.kpi{background:#101f33;border:1px solid #263d5c;border-radius:20px;padding:22px;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+.wide{width:94%;margin:22px auto}
+.kpi span{font-size:30px;font-weight:900;color:#00e091}.kpi.danger span{color:#ff6b6b}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,select{width:100%;padding:12px;background:#07111f;border:1px solid #355477;border-radius:12px;color:white}
+.controls{width:94%;margin:20px auto;padding:18px;background:#0b1728;border:1px solid #263d5c;border-radius:18px;display:flex;gap:18px;align-items:center}
+.card{padding:16px;margin:12px 0;background:#17283f;border-radius:16px;border-left:5px solid #00e091}
+.card.risk{border-left-color:#ff6b6b}.bad{color:#ff6b6b;font-weight:700}.good{color:#00e091;font-weight:700}
+table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #263d5c;text-align:left}
+canvas{max-height:430px}

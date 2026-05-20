@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Liquidity Control Center</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+  <div>
+    <h1>AI Liquidity Control Center</h1>
+    <p>ML + rule-based treasury predictor: вводишь данные — система предугадывает cash gap.</p>
+  </div>
+  <button onclick="refreshAll()">Run ML Forecast</button>
+</header>
+
+<section class="top-grid">
+  <div class="panel">
+    <h2>Add Bank Account</h2>
+    <div class="form-grid">
+      <input id="bankName" placeholder="Bank name">
+      <input id="accountName" placeholder="Account name">
+      <select id="currency"><option>KZT</option><option>EUR</option><option>USD</option><option>GBP</option></select>
+      <input id="balance" type="number" placeholder="Current balance">
+      <input id="minimumLimit" type="number" placeholder="Minimum liquidity limit">
+      <button onclick="addAccount()">Add Account</button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Add Transaction</h2>
+    <div class="form-grid">
+      <select id="accountSelect"></select>
+      <input id="amount" type="number" placeholder="Amount">
+      <select id="direction"><option>INFLOW</option><option>OUTFLOW</option></select>
+      <select id="paymentSystem"><option>INTERNAL</option><option>LOCAL</option><option>SEPA</option><option>SWIFT</option><option>CARD</option></select>
+      <input id="plannedDate" type="date">
+      <input id="description" placeholder="Description">
+      <button onclick="addTransaction()">Add Transaction</button>
+    </div>
+  </div>
+</section>
+
+<section class="controls">
+  <label>Forecast days: <input id="days" type="number" value="14" min="1" max="60"></label>
+  <label>Stress:
+    <select id="stress">
+      <option value="normal">Normal</option>
+      <option value="swift_delay">SWIFT delay +2 days</option>
+      <option value="card_delay">Card clearing delay +3 days</option>
+      <option value="outflow_spike">Outflow spike +30%</option>
+    </select>
+  </label>
+  <button onclick="refreshAll()">Update</button>
+  <button onclick="trainML()">Train ML</button>
+</section>
+
+<section class="kpi-grid">
+  <div class="kpi"><span id="kpiAccounts">0</span><p>Accounts</p></div>
+  <div class="kpi"><span id="kpiTransactions">0</span><p>Transactions</p></div>
+  <div class="kpi danger"><span id="kpiAlerts">0</span><p>ML Risk Alerts</p></div>
+  <div class="kpi"><span id="mlStatus">...</span><p>ML Status</p></div>
+</section>
+
+<section class="main-grid">
+  <div class="panel"><h2>Accounts</h2><div id="accounts"></div></div>
+  <div class="panel"><h2>ML Risk Alerts</h2><div id="alerts"></div></div>
+</section>
+
+<section class="panel wide">
+  <h2>ML Liquidity Forecast Chart</h2>
+  <canvas id="chart"></canvas>
+</section>
+
+<section class="panel wide">
+  <h2>Transactions</h2>
+  <div id="transactions"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
